@@ -1,33 +1,52 @@
-# JarDecompiler
+# Jar Decompiler
 
-A simple bash script to decompile Java JAR files using Fernflower.
-
-## Overview
-
-This project provides a command-line tool, `jardecompiler`, to decompile Java JAR files. It automatically downloads Fernflower if it's not already present, decompiles the provided JAR, extracts its contents, and opens the output directory.
+A simple tool to decompile Jar files using Fernflower.
 
 ## Files
 
--   `jardecompiler`: A wrapper script that executes `jardecompiler.sh`.
--   `jardecompiler.sh`: The main script that performs the decompilation process.
--   `makefile`: A makefile to install and uninstall the `jardecompiler` script
+-   **makefile**: Used for installing and uninstalling the `jardecompiler` scripts.
+-   **jardecompiler**: A wrapper script to execute `jardecompiler.sh`.
+-   **jardecompiler.sh**: The main script that downloads Fernflower (if not present) and uses it to decompile the provided Jar file.
 
 ## Usage
 
-1.  **Installation:**
-    ```bash
-    sudo make install
-    ```
-    This will install the `jardecompiler` script to `/usr/local/bin` and the script to `/opt/jardecompiler`
-2.  **Usage:**
+To decompile a Jar file, run:
 
-    ```bash
-    jardecompiler <path/to/your/jarfile.jar>
-    ```
+```bash
+jardecompiler <path_to_your_jar_file.jar>
+```
 
-    This will:
+This script will:
 
-    -   Download Fernflower if it is not available in the `$HOME/binaries` directory.
-    -   Decompile the specified JAR file into a directory with the same name (without the extension) in the current directory.
-    -   Extract the original JAR file contents into the decompiled directory.
-    -   Open the output directory in your system's default file browser.
+1. Download Fernflower if it's not already in `$HOME/binaries/fernflower.jar`.
+2. Decompile the specified Jar file into a directory named after the Jar file (without the extension).
+3. Extract the contents of the Jar file into the same output directory.
+4. Open the output directory.
+
+## Installation
+
+To install the `jardecompiler` tool, run:
+
+```bash
+sudo make install
+```
+
+This will copy:
+
+-   `jardecompiler` to `/usr/local/bin/jardecompiler`
+-   `jardecompiler.sh` to `/opt/jardecompiler/jardecompiler.sh`
+
+And set execute permissions for both scripts.
+
+## Uninstallation
+
+To uninstall the `jardecompiler` tool, run:
+
+```bash
+sudo make uninstall
+```
+
+This will remove:
+
+-   `/usr/local/bin/jardecompiler`
+-   `/opt/jardecompiler` directory
